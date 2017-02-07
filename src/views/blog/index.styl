@@ -1,0 +1,159 @@
+@import "../../common/stylus/_basic.styl"
+
+$darkWhite = #fff
+$blogBack = #00c4b9
+
+@keyframes glow
+  0%
+    transform scale(.9) opacity(.3)
+
+  60%
+    transform scale(1) opacity (1)
+
+  to
+    transform scale(.9) opacity(.3)
+
+
+.blog
+  font-size px2rem(14)
+  background-color $blogBack
+  width 100%
+  min-height 100%
+  top 0
+  left 0
+  position absolute
+  color $darkWhite
+  .navigation
+    z-index 100
+    position fixed
+  .content
+    position fixed
+    width 100%
+    height 100%
+    top 0
+    left 0
+    min-height 100%
+    padding px2rem(30) px2rem(30) px2rem(60) px2rem(80)
+    color $darkWhite
+    .view-description
+      position relative
+      font-size px2rem(14)
+      line-height px2rem(16)
+      text-align justify
+    .view-title
+      position relative
+      font-weight 500
+      text-transform uppercase
+      display inline-block
+      margin 0 px2rem(20) 0 0
+    .view-description
+      display inline-block;
+      font-size px2rem(14)
+
+@media (min-width 640px)
+  .blog
+    height 100%
+
+  .navigation
+    top 50%
+    left px2rem(40)
+    height px2rem(90)
+    width px2rem(20)
+    transform translateY(-50%)
+    .dot
+      position relative
+      display block
+      width px2rem(20)
+      height px2rem(20)
+      margin px2rem(10) 0
+      border-radius 100%
+      background-color $darkWhite
+      opacity .65
+      transition all .3s ease
+      cursor pointer
+
+  .content
+    box-sizing border-box;
+    .view-header
+      font-size px2rem(18)
+      height px2rem(100)
+      position relative
+      white-space nowrap
+      .view-title
+        font-size px2rem(60)
+        height px2rem(100)
+        line-height px2rem(100)
+
+    .region-view
+      height 100%
+    .view-content
+      width 100%;
+      height 100%;
+      position relative;
+      overflow hidden;
+      padding 110px 0 0 0;
+      top -110px;
+      box-sizing border-box;
+      .view-container
+        height 100%
+        overflow-x scroll
+        column-count 100
+        column-width px2rem(260)
+        column-gap px2rem(20)
+        &::-webkit-scrollbar-thumb
+          border-radius px2rem(10)
+          background currentColor
+        &::-webkit-scrollbar
+          width px2rem(6)
+          height px2rem(6)
+        &::-webkit-scrollbar-track
+          background linear-gradient(180deg, transparent 0, transparent 30%, currentColor 50%, transparent 70%, transparent);
+
+  .profile
+    position fixed;
+    top 0;
+    width px2rem(320);
+    padding px2rem(30);
+    box-sizing border-box;
+    height 100%;
+    right px2rem(-176);
+    z-index 99;
+    .header
+      position relative;
+      height px2rem(84);
+      pointer-events auto;
+      .cover
+        position relative
+        width px2rem(84);
+        height px2rem(84);
+        border-radius 50%;
+        float left;
+        overflow hidden;
+        margin 0 px2rem(20) 0 0;
+        img
+          width 100%
+          height 100%
+          transform scale(.8)
+          border-radius 100%
+          transition all .5s ease
+          cursor pointer
+          &hover {
+            transform scale(1)
+          }
+        .cover-background
+          opacity .6
+          background $darkWhite
+          border-radius 100%
+          animation glow 3s ease infinite
+          width 100%
+          height 100%
+          position absolute
+          top 0
+          z-index -1
+
+    .about
+      width px2rem(84)
+      text-align center
+      font-size px2rem(12)
+
+
