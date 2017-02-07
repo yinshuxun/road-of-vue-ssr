@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const base = require('./webpack.base.config')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = Object.assign({}, base, {
   target: 'node',
@@ -19,6 +20,7 @@ module.exports = Object.assign({}, base, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'process.env.VUE_ENV': '"server"'
-    })
+    }),
+    new ExtractTextPlugin('styles.[hash].css')
   ]
 })

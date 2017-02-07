@@ -5,6 +5,13 @@ const HTMLPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const SWPrecachePlugin = require('sw-precache-webpack-plugin')
 
+vueConfig.loaders = {
+  stylus: ExtractTextPlugin.extract({
+    loader: 'css-loader!stylus-loader',
+    fallbackLoader: 'vue-style-loader' // <- this is a dep of vue-loader
+  })
+}
+
 const config = Object.assign({}, base, {
   resolve: {
     alias: Object.assign({}, base.resolve.alias, {
@@ -24,7 +31,8 @@ const config = Object.assign({}, base, {
     // generate output HTML
     new HTMLPlugin({
       template: 'src/index.template.html'
-    })
+    }),
+    new ExtractTextPlugin('styles.[hash].css')
   ])
 })
 
@@ -34,18 +42,10 @@ if (process.env.NODE_ENV === 'production') {
   // vueConfig is already included in the config via LoaderOptionsPlugin
   // here we overwrite the loader config for <style lang="stylus">
   // so they are extracted.
-  vueConfig.loaders = {
-    stylus: ExtractTextPlugin.extract({
-      loader: 'css-loader!stylus-loader',
-      fallbackLoader: 'vue-style-loader' // <- this is a dep of vue-loader
-    })
-  }
-
   config.plugins.push(
-    new ExtractTextPlugin('styles.[hash].css'),
     // this is needed in webpack 2 for minifying CSS
     new webpack.LoaderOptionsPlugin({
-      minimize: true
+      minimize: false
     }),
     // minify JS
     new webpack.optimize.UglifyJsPlugin({

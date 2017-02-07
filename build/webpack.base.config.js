@@ -21,9 +21,6 @@ module.exports = {
     publicPath: '/dist/',
     filename: '[name].[chunkhash].js'
   },
-  // resolveLoader: {
-  //   moduleExtensions: ['-loader']
-  // },
   resolve: {
     alias: {
       'public': path.resolve(__dirname, '../public')
