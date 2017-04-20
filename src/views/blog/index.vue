@@ -5,7 +5,7 @@
             <a class='dot' @click="choose('region2',$event)"></a>
             <a class='dot' @click="choose('region3',$event)"></a>
         </div>
-        <div v-bind:class="{'content':true}">
+        <div :class="{'content':true}">
             <component :is="currentView"></component>
         </div>
         <div :class="{'profile':true}">
@@ -25,22 +25,22 @@
     import region3 from './region_3.vue'
 
     export default{
-      data() {
-        return {
-          msg: 'hello vue',
-          currentView: 'region_1'
+        data() {
+            return {
+                msg: 'hello vue',
+                currentView: 'region1'
+            }
+        },
+        methods: {
+            choose(path, event) {
+                this.currentView = path
+            }
+        },
+        components: {
+            region1,
+            region2,
+            region3
         }
-      },
-      methods: {
-        choose(path, event) {
-          this.currentView = path
-        }
-      },
-      components: {
-        region1,
-        region2,
-        region3
-      }
     }
 </script>
 <style src="./index.styl" lang="stylus"></style>
